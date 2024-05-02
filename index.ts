@@ -14,7 +14,6 @@
 export function question1_removeSmallNumbers(list: (number | undefined)[]) {
   for (let i = 0; i < list.length; i++) {
     const n = list[i];
-    console.log(n);
     if (n && n < 10) {
       console.log("removing", n);
       list.splice(i, 1);
@@ -22,4 +21,41 @@ export function question1_removeSmallNumbers(list: (number | undefined)[]) {
       i -= 1;
     }
   }
+}
+
+/**
+ * Question 2
+ */
+
+class ItemStore {
+  _item: Item;
+}
+
+export interface Item {
+  id: string;
+  tag: string;
+}
+
+export interface ItemStore {
+  /**
+   * Adds an {@link Item} to the store, replacing any existing item with the
+   * same {@link Item#id} value.
+   */
+  put: (item: Item) => void;
+
+  /**
+   * Retrieves the {@link Item} with the given {@link Item#id} value, or
+   * null if no such {@link Item} exists in the store.
+   */
+  get: (id: string) => Item | null;
+
+  /**
+   * Delete all {@link Item}s with the specified tag.
+   */
+  dropAllByTag: (tag: string) => void;
+
+  /**
+   * Returns the number of Items in the store
+   */
+  size: () => number;
 }
