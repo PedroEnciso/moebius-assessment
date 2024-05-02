@@ -1,0 +1,215 @@
+// Moebius Solutions Typescript Assessment
+================
+
+> VERSION: 2022-08-24
+
+QUESTION 1. Why does this code not work? Provide a working version?
+----------------
+
+```typescript
+/**
+ * Code for Question 1. 
+ * 
+ * Remove values less than 10 from an array
+ * 
+ * @param list 
+ */
+export function question1_removeSmallNumbers(list: (number | undefined)[]) {
+    for (let i = 0; i < list.length; i++) {
+        const n = list[i]
+        if (n && n < 10) {
+            console.log('removing', n)
+            list.splice(i, 1)
+        }
+    }
+}
+```
+
+QUESTION 2: Programming Task
+----------------
+
+Write classes that implements the following interfaces, assuming that all methods
+are used with approximately the same frequency.
+Explain why you chose the data structures you used.
+
+```typescript
+export interface Item {
+    id: string
+    tag: string
+}
+
+export interface ItemStore {
+    /**
+     * Adds an {@link Item} to the store, replacing any existing item with the
+     * same {@link Item#id} value.
+     */
+    put: (item: Item) => void
+
+    /**
+     * Retrieves the {@link Item} with the given {@link Item#id} value, or
+     * null if no such {@link Item} exists in the store.
+     */
+    get: (id: string) => Item | null
+
+    /**
+     * Delete all {@link Item}s with the specified tag.
+     */
+    dropAllByTag: (tag: string) => void
+
+    /**
+     * Returns the number of Items in the store
+     */
+    size: () => number
+}
+```
+
+QUESTION 3: Asynchronous Event Debugging
+----------------
+
+The following line of code works most of the time:
+
+```js
+ReactDOM.render(<Webmap/>, document.getElementById('app-container'));
+```
+
+But, occasionally during browser startup it fails with an
+exception because `document.getElementById('app-container')` returns `null`.
+
+The following changes address the issue and work reliably.
+Explain why this code works, but the original code would sometimes fail.
+
+```js
+window.addEventListener('load', () => {
+  ReactDOM.render(<Webmap/>, document.getElementById('app-container'));
+})
+```
+
+You may use https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event for reference
+about the `Window: load event`.
+
+QUESTION 4: Debugging
+----------------
+
+```
+class Bug1 {
+    _rating: number | null = null
+
+	rating() {
+		return this.rating;
+	}
+}
+
+export function question4() {
+    const bug = new Bug1()
+    return `Rating is ${bug.rating()}`
+}
+```
+
+The function `question4` above does not return the expected string: 'Rating is null'.
+Instead the string below is returned.
+
+```
+Rating·is·rating()·{
+        return·this.rating;
+    }
+```
+
+Debug the class `Bug1` and correct it so that it returns the expected string `Rating is null`.
+
+QUESTION 5: Spread Operator
+----------------
+
+Given the function below:
+
+```
+export function question5() {
+    let orig = {
+        prop1: 'p1',
+        prop2: 'p2',
+    }
+
+    let modified = orig
+    orig.prop1 = 'm1'
+
+    if (orig === modified) {
+        console.log('orig and modified are the same')
+    }
+    if (modified.prop1 === 'm1') {
+        console.log('orig.prop1 is m1')
+    }
+
+    modified = { 
+        ...orig,
+        prop2: 'm2'
+    }
+
+    if (orig === modified) {
+        console.log('orig and modified are still the same')
+    }
+    if (modified.prop1 === 'm1') {
+        console.log('orig.prop1 is m1')
+    }
+    if (modified.prop2 === 'm2') {
+        console.log('orig.prop1 is m2')
+    }
+}
+```
+
+What is the output?
+There are two nearly identical blocks of code:
+
+```ts
+    if (orig === modified) {
+        console.log('orig and modified are the same')
+    }
+```
+
+and
+
+```ts
+    if (orig === modified) {
+        console.log('orig and modified are still the same')
+    }
+```
+
+If one or either of the `console.log` lines was skipped, explain why. 
+
+BONUS: Programming Puzzle Bonus!
+----------------
+
+A string of ASCII text has been encrypted using the following algorithm:
+
+* Use the bytes "MOEBIUS" as the key.
+* Working one byte at a time, xor the next byte of data with the next byte in
+  the key.
+* When the end of the key is reached, wrap around to the first byte again.
+* Base-64 encode the data.
+
+For example, the text "Simple is better than complex." encrypts to
+"HiYoMiUwcyQ8ZSAsIScoPWU2ITQ9bSwqLzk5NjVh". The key is repeated as follows
+while XOR-ing bytes:
+
+```
+Simple is better than complex.
+MOEBIUSMOEBIUSMOEBIUSMOEBIUSMO
+```
+
+Write a program to reverse this process and decrypt the following message. Use
+any programming language you like. Provide both your program and the decrypted
+message.
+
+```
+DiArJTs0JzgjJDYgOj0+Y2U7JiBzPiApNCwxczknIGIrOj04PGUzPDAgOSYqLGhfWW1vZW
+JpdXNtb2ViaXVzbW9lYml1c21vZWJpdXNtb2ViaXVzY2hibEN1c21vZWJpe3RqYWViaXVz
+bWFlYml1c21vZWhucnltb2VicwoPYhB/Yml1c21hT2JpdXNtb38dFXoMd29lYhYJe2IQZW
+Jnb31nEBltFn9zbW9/YmYJc3dvZWxue2ljaGtIaXV9amhreGl6D211ZWJpe3xkE2ViaXJp
+amVlbRV1eW11ZWJue31qYWViZGhpInV4b0N1aRITah1zcn13dX9saXVzbWhlaG5yeW1vZW
+JjdXRjaGpsbnUMEWdqHW57dHdoa2VDdWltYBlic3Vpd3V/eGl1c21vbx0Vegxnb2ViaXV+
+cG8qYnR4c21gbB5pdXNtaE9iaXJ9Y2hlYm5vaXdoZWJpdXNnb2oeaX9zbW9lYmdyfGNoa2
+JpdXRHb2ViaXVzbW9lYml1c21vZWJpdXljYW9iaXVzbW9lYmlvWQ==
+```
+
+> NOTE: This block uses the "MIME" flavor of Base64 encoding.
+> Depending upon your Base64 decoder, you may need to remove the "=" padding.
+> 
+
