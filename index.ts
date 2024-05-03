@@ -81,6 +81,27 @@ export class ItemStore {
  Calling the ReactDOM.render function in an on 'load' event listener guaruntees that the DOM and its dependencies are fully loaded before the javascript function is called.
  */
 
+/**
+ * Question 4
+ * 
+ Bug1's rating method was returning itself instead of the _rating property. To fix this bug, you have to return this._rating
+ *
+ */
+
+class Bug1 {
+  _rating: number | null = null;
+
+  rating() {
+    // solution: this.rating => this._rating
+    return this._rating;
+  }
+}
+
+export function question4() {
+  const bug = new Bug1();
+  return `Rating is ${bug.rating()}`;
+}
+
 /** END SOLUTIONS */
 
 export interface Item {
