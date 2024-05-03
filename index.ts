@@ -106,6 +106,7 @@ export function question4() {
  * Question 5
  *
  * What is the output?
+
  The output of the code is:
  orig and modified are the same
  orig.prop1 is m1
@@ -130,10 +131,55 @@ export function question4() {
 
 * If one or either of the `console.log` lines was skipped,
 * explain why. 
+
 The second console.log was skipped because the spread operator creates a copy of the object that is spread, so orig and modified are no longer pointing to the same object and are no longer strictly equal to each other. 
  */
 
-/** END SOLUTIONS */
+/**
+ * BONUS
+ * 
+ The secret message is:
+
+ Congratulations, you solved the bonus question!
+
+                                   .''.
+       .''.      .        *''*    :_\/_:     .
+      :_\/_:   _\(/_  .:.*_\/_*   : /\ :  .'.:.'.
+  .''.: /\ :   ./)\   ':'* /\ * :  '..'.  -=:o:=-
+ :_\/_:'.:::.    ' *''*    * '.'/.' _\(/_'.':'.'
+ : /\ : :::::     *_\/_*     -= o =-  /)\    '
+  '..'  ':::'     * /\ *     .'/.'.   '
+                   *..*         :
+ */
+
+export function decrypt(message: string) {
+  let buff = Buffer.from(message, "base64");
+  let encryptedText = buff.toString("ascii");
+  const secret = xorBytes(encryptedText.split(""));
+  return secret;
+}
+
+export function xorBytes(textArray: string[]) {
+  const key = "MOEBIUS".split("");
+  let keyCounter = 0;
+  const answerArray: string[] = [];
+  textArray.forEach((char) => {
+    if (keyCounter === key.length) {
+      keyCounter = 0;
+    }
+    const asciiNumber = char.charCodeAt(0) ^ key[keyCounter].charCodeAt(0);
+    answerArray.push(String.fromCharCode(asciiNumber));
+    keyCounter++;
+  });
+  return answerArray.join("");
+}
+
+const message = decrypt(
+  "DiArJTs0JzgjJDYgOj0+Y2U7JiBzPiApNCwxczknIGIrOj04PGUzPDAgOSYqLGhfWW1vZWJpdXNtb2ViaXVzbW9lYml1c21vZWJpdXNtb2ViaXVzY2hibEN1c21vZWJpe3RqYWViaXVzbWFlYml1c21vZWhucnltb2VicwoPYhB/Yml1c21hT2JpdXNtb38dFXoMd29lYhYJe2IQZWJnb31nEBltFn9zbW9/YmYJc3dvZWxue2ljaGtIaXV9amhreGl6D211ZWJpe3xkE2ViaXJpamVlbRV1eW11ZWJue31qYWViZGhpInV4b0N1aRITah1zcn13dX9saXVzbWhlaG5yeW1vZWJjdXRjaGpsbnUMEWdqHW57dHdoa2VDdWltYBlic3Vpd3V/eGl1c21vbx0Vegxnb2ViaXV+cG8qYnR4c21gbB5pdXNtaE9iaXJ9Y2hlYm5vaXdoZWJpdXNnb2oeaX9zbW9lYmdyfGNoa2JpdXRHb2ViaXVzbW9lYml1c21vZWJpdXljYW9iaXVzbW9lYmlvWQ=="
+);
+console.log(message);
+
+/***** END SOLUTIONS *****/
 
 export interface Item {
   id: string;
