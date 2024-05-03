@@ -26,7 +26,7 @@ export function question1_removeSmallNumbers(list: (number | undefined)[]) {
 /**
  * Question 2
  *
- I chose to implement the ItemStore object as an array of Item objects. Using an array allowed me to use array methods such as find an filter for ItemStore's methods. I used the find method for ItemStore methods that looked for only one value in the array (put and get). Find is the best method to use in this case because it terminates after an iteration returns true.
+ I chose to implement the ItemStore class as an array of Item objects. Using an array allowed me to use array methods such as find an filter for ItemStore's methods. I used the find method for ItemStore methods that looked for only one value in the array (put and get). Find is the best method to use in this case because it terminates after an iteration returns true.
   I used the filter method for the dropByTag method because it is necessary to iterate over every item in the array.
  */
 
