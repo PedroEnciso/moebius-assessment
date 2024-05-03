@@ -11,7 +11,8 @@ When the program removes a value using the splice method, the index of each arra
 The index of the iterator then increases and skips the next item in the array.
 To fix this, the iterator must not increase when it removes a value from the array.
 
-`export function question1_removeSmallNumbers(list: (number | undefined)[]) {
+```
+export function question1_removeSmallNumbers(list: (number | undefined)[]) {
   for (let i = 0; i < list.length; i++) {
     const n = list[i];
     if (n && n < 10) {
@@ -21,6 +22,7 @@ To fix this, the iterator must not increase when it removes a value from the arr
       i -= 1;
     }
   }
-}`
+}
+```
 
 ## Running the tests
