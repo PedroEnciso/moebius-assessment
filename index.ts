@@ -102,6 +102,37 @@ export function question4() {
   return `Rating is ${bug.rating()}`;
 }
 
+/**
+ * Question 5
+ *
+ * What is the output?
+ The output of the code is:
+ orig and modified are the same
+ orig.prop1 is m1
+ orig.prop1 is m1
+ orig.prop1 is m2
+
+ * There are two nearly identical blocks of code:
+
+```ts
+    if (orig === modified) {
+        console.log('orig and modified are the same')
+    }
+```
+
+* and
+
+```ts
+    if (orig === modified) {
+        console.log('orig and modified are still the same')
+    }
+```
+
+* If one or either of the `console.log` lines was skipped,
+* explain why. 
+The second console.log was skipped because the spread operator creates a copy of the object that is spread, so orig and modified are no longer pointing to the same object and are no longer strictly equal to each other. 
+ */
+
 /** END SOLUTIONS */
 
 export interface Item {
