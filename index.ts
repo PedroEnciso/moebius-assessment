@@ -74,6 +74,13 @@ export class ItemStore {
   }
 }
 
+/**
+ * Question 3
+ * 
+ This exception occurs because the DOM element refernced by document.getElementById('app-container') has not loaded at the time that the line of javascript executes. This could be due to a script tag above the desired HTML element, or dependent resources that take time to load such as images, stylesheets, fonts, etc.
+ Calling the ReactDOM.render function in an on 'load' event listener guaruntees that the DOM and its dependencies are fully loaded before the javascript function is called.
+ */
+
 /** END SOLUTIONS */
 
 export interface Item {
